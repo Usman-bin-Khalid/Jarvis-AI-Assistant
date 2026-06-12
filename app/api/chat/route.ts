@@ -29,6 +29,7 @@ export async function POST(request: Request) {
           },
         ],
       })
+
       reply = result.text
       console.log('[v0] Gemini response:', reply)
     } catch (apiError) {
@@ -37,6 +38,8 @@ export async function POST(request: Request) {
       reply = `Good morning, sir. I am JARVIS, your personal AI assistant. You asked: "${message}". I'm in demo mode. In production, I would provide a detailed response using Gemini AI.`
     }
 
+    
+     
     // Generate speech using ElevenLabs via our TTS endpoint
     let audioUrl = null
     try {
