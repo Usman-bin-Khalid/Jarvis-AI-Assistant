@@ -1,7 +1,9 @@
 import { generateText } from 'ai'
-import { google } from '@ai-sdk/google'
+import { createGoogleGenerativeAI } from '@ai-sdk/google'
 
-const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.GCP_API_KEY
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.GCP_API_KEY,
+})
 
 
 export async function POST(request: Request) {
@@ -20,7 +22,7 @@ export async function POST(request: Request) {
 
     try {
       const result = await generateText({
-        model: google('gemini-2.5-flash', { apiKey }),
+        model: google('gemini-2.5-flash'),
         system: `You are JARVIS, Tony Stark's Personal AI Assistant. You are sophisticated, witty, and highly knowledgeable about technology, science, and business. You speak with British mannerisms and maintain a professional yet friendly demeanor. You can help with questions about technology, provide information, assist with problem-solving, and engage in intelligent conversation. Keep responses concise but informative.`,
         messages: [
           {
